@@ -1,26 +1,94 @@
 require 'json'
-path = File.join(File.dirname(__FILE__), '../data/products.json')
-file = File.read(path)
-products_hash = JSON.parse(file)
+require 'date'
 
-# Print "Sales Report" in ascii art
+def setup_files
+  path = File.join(File.dirname(__FILE__), '../data/products.json')
+  file = File.read(path)
+  $products_hash = JSON.parse(file)
+  $report_file = File.new("report.txt", "w+")
+end
 
 # Print today's date
+def print_date
+puts "Today's Date: #{Time.now.strftime("%m/%d/%Y")}"
+end 
 
-# Print "Products" in ascii art
+def line_break
+  puts " "
+end
 
-# For each product in the data set:
-	# Print the name of the toy
-	# Print the retail price of the toy
-	# Calculate and print the total number of purchases
-  # Calcalate and print the total amount of sales
-  # Calculate and print the average price the toy sold for
-  # Calculate and print the average discount based off the average sales price
+def report_heading
 
-# Print "Brands" in ascii art
+  puts "  #####                                 ######"    
+  puts " #     #   ##   #      ######  ####     #     # ###### #####   ####  #####  #####"
+  puts " #        #  #  #      #      #         #     # #      #    # #    # #    #   #"
+  puts "  #####  #    # #      #####   ####     ######  #####  #    # #    # #    #   #"
+  puts "       # ###### #      #           #    #   #   #      #####  #    # #####    #" 
+  puts " #     # #    # #      #      #    #    #    #  #      #      #    # #   #    #" 
+  puts "  #####  #    # ###### ######  ####     #     # ###### #       ####  #    #   #"
+  puts "********************************************************************************"
 
-# For each brand in the data set:
-	# Print the name of the brand
-	# Count and print the number of the brand's toys we stock
-	# Calculate and print the average price of the brand's toys
-	# Calculate and print the total sales volume of all the brand's toys combined
+end
+
+def products_heading
+
+  puts "                     _            _       "
+  puts "                    | |          | |      "
+  puts " _ __  _ __ ___   __| |_   _  ___| |_ ___ "
+  puts "| '_ \\| '__/ _ \\ / _` | | | |/ __| __/ __|"
+  puts "| |_) | | | (_) | (_| | |_| | (__| |_\\__ \\"
+  puts "| .__/|_|  \\___/ \\__,_|\\__,_|\\___|\\__|___/"
+  puts "| |                                       "
+  puts "|_|                                       "
+
+end
+
+def brands_heading
+
+  puts " _                         _     "
+  puts "| |                       | |    "
+  puts "| |__  _ __ __ _ _ __   __| |___ "
+  puts "| '_ \\| '__/ _` | '_ \\ / _` / __|"
+  puts "| |_) | | | (_| | | | | (_| \\__ \\"
+  puts "|_.__/|_|  \\__,_|_| |_|\\__,_|___/"
+  puts
+
+end
+
+# To print from selection of headings
+def print_heading heading
+
+  if heading == "sales report"
+
+    report_heading
+
+  elsif heading == "products"
+
+    products_heading
+
+  elsif heading == "brand"
+
+    brands_heading
+
+  end 
+end
+
+
+
+def create_report
+
+  print_heading("sales report")
+  print_date
+  print_heading("products")
+  make_products_section
+
+end
+
+def start
+  setup_files # load, read, parse, and create the files
+  create_report # create the report!
+end
+
+start # call start method to trigger report generation 
+
+
