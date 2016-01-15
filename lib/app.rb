@@ -1,5 +1,4 @@
 require 'json'
-require 'date'
 
 def setup_files
   path = File.join(File.dirname(__FILE__), '../data/products.json')
@@ -7,11 +6,6 @@ def setup_files
   $products_hash = JSON.parse(file)
   $report_file = File.new("report.txt", "w+")
 end
-
-# Print today's date
-def print_date 
-  $report_file.puts "Today's Date: #{Time.now.strftime("%m/%d/%Y")}"
-end 
 
 def line_break num
   $report_file.puts "*" * num
@@ -28,6 +22,10 @@ def report_heading
   $report_file.puts " #     # #    # #      #      #    #    #    #  #      #      #    # #   #    #" 
   $report_file.puts "  #####  #    # ###### ######  ####     #     # ###### #       ####  #    #   #"
   $report_file.puts "********************************************************************************"
+
+  # Print today's date
+  $report_file.puts "Today's Date: #{Time.now.strftime("%m/%d/%Y")}"
+  require 'date'
 
 end
 
