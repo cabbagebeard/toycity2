@@ -55,7 +55,7 @@ def brands_heading
 end
 
 # To print from selection of headings
-def print_heading heading
+def print_heading(heading)
 
   if heading == :sales_report
 
@@ -70,11 +70,6 @@ def print_heading heading
     brands_heading
 
   end 
-end
-
-def print_file_heading
-  print_heading :sales_report
-  print_date
 end
 
 def make_products_section 
@@ -93,7 +88,7 @@ def make_products_section
     end
 
   # Calculate the average discount based off the average sales price
-  full_price = toy["full-price"].to_i
+  full_price = toy["full-price"].to_f
   avg_discount = ((full_price - sales_avg)/full_price) * 100
 
     # Print the name of the toy
@@ -173,11 +168,11 @@ end
 
 
 def create_report
-  print_file_heading
-  print_heading :products
+  print_heading(:report)
+  print_heading(:products)
   line_break(42)
   make_products_section
-  print_heading :brand
+  print_heading(:brand)
   line_break(42)
   make_brands_section
 end
